@@ -1,0 +1,18 @@
+--/****** Object:  Table [dbo].[STRIPEPAYMENTDATA]    Script Date: 9/18/2018 1:47:50 AM ******/
+--SET ANSI_NULLS ON
+--GO
+--SET QUOTED_IDENTIFIER ON
+--GO
+--CREATE TABLE [dbo].[STRIPEPAYMENTDATA](
+--	[Id] [int] IDENTITY(1,1) NOT NULL,
+--	[Customer] [nvarchar](max) NOT NULL,
+--	[TransactionId] [nvarchar](max) NOT NULL,
+--	[Date_Created] [datetime] NOT NULL,
+--	[Status] [nvarchar](50) NOT NULL,
+--	[Description] [nvarchar](50) NOT NULL,
+--	[UserId] [int] NOT NULL,
+-- CONSTRAINT [PK_STRIPEPAYMENTDATA] PRIMARY KEY CLUSTERED 
+--(
+--	[Id] ASC
+--)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
+--) ON [PRIMARY] TEXTIMAGE_ON [PRIMARY]
