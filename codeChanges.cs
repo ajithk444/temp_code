@@ -4,10 +4,10 @@
             Dictionary<int, HashSet<int>> adjList = new Dictionary<int, HashSet<int>>();
            
 
-            var tasks = taskHelper.TaskRepository.Get_TaskListByProjectID(CurrentUser.CurrentUSER.CurrentProjectID, true).ToList();
+            var tasks = taskHelper.TaskRepository.Get_TaskListByProjectID(CurrentUser.CurrentUSER.CurrentProjectID, true).ToArray();
 
             //get all edges
-            AdjacencyList adjacencyList = new AdjacencyList(Convert.ToInt32(tasks.Count * tasks.Count),true);
+            AdjacencyList adjacencyList = new AdjacencyList(tasks.Max(),true);
             foreach (var item in tasks)
             {
                 //check in left (child) tree
