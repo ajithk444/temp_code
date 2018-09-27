@@ -4,9 +4,9 @@ ALTER TABLE PROJECT ADD StartTime time NOT NULL DEFAULT '00:7:00'
 ALTER TABLE PROJECT ADD EndTime time NOT NULL DEFAULT '00:20:00'
 
 
+https://github.com/search?l=C%23&q=acyclic+graph&type=Repositories
 
 
-USE [DBPullPlanTest]
 GO
 
 /****** Object:  Table [dbo].[STRIPEPAYMENTDATA]    Script Date: 27-09-2018 15:33:52 ******/
