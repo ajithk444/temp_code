@@ -1,34 +1,43 @@
- private bool CheckIfCyclicDirectedGraph(int childTaskID, int parentTaskID)
+ public ActionResult Login()
         {
-            bool isCyclic = false;
-            Dictionary<int, HashSet<int>> adjList = new Dictionary<int, HashSet<int>>();
-           
-
-            var tasks = taskHelper.TaskRepository.Get_TaskListByProjectID(CurrentUser.CurrentUSER.CurrentProjectID, true).ToArray();
-
-            //get all edges
-            AdjacencyList adjacencyList = new AdjacencyList(tasks.Max(),true);
-            foreach (var item in tasks)
+            if (CurrentUser.CurrentUSER != null && CurrentUser.IsLoggedIn)
             {
-                //check in left (child) tree
-                var parentTasks = taskHelper.TaskRepository.GetParentTasksByChildId(item.ID);
-                foreach (var parentTask in parentTasks)
-                {
-                    adjacencyList.AddEdge(parentTask.ID, item.ID);
-                }
-                //check in  right (parent) tree
-                var childTasks = taskHelper.TaskRepository.GetChildTasksByParentId(item.ID);
-                foreach (var childItem in childTasks)
-                {
-                    adjacencyList.AddEdge(item.ID,childItem.ID);
-                }
+                int userID = CurrentUser.CurrentUSER.UserID;                
+                string uniqueSessionID = Session["UserSessionID"].ToString();
+                //update session id as not active in usersession table                
             }
-
-            //add the new link to the list to check if it becomes a cyclic tree
-            adjacencyList.AddEdge(parentTaskID,childTaskID);
-
-            CycleDirectedGraph cycleDirectedGraph = new CycleDirectedGraph(adjacencyList);
-            //cycleDirectedGraph.DetectCycle();
-            isCyclic = cycleDirectedGraph.DetectCycleWithColor();
-            return isCyclic;
+            return View();
         }
+
+
+
+_______________________________________________________________________________________________
+
+
+login method:
+  
+                if (user != null)
+                {
+                 //check if a session is active for the user from db
+                  var session = userHelper.UserRepository.Get_UserSession(user.ID);
+                 if(session!=null && session.isActive ==true)
+                 {
+                    // redirect to login page with error message or show a popup to override old session.
+                 }
+                 
+                    HttpRequest req = System.Web.HttpContext.Current.Request;
+                    string browserName = req.Browser.Browser;
+                    Session["UserSessionID"] = Guid.NewGuid().ToString();
+                    //insert or update the usersession table. (userid, logindate,isactive,sessionid)
+                     userHelper.InitializeCurrentUser(user);
+                 
+                 
+__________________________________________________________________________________________________
+ 
+ 
+ logoff method:
+             
+                 
+                  int userID = CurrentUser.CurrentUSER.UserID;                
+                string uniqueSessionID = Session["UserSessionID"].ToString();
+                //update session id as not active in usersession table                
