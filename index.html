@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+<head>
+<style> 
+div[class*="test"] {
+    background: #ffff00;
+}
+
+//@media only screen and (max-device-width: 480px)
+
+@media only screen and (max-width: 768px) {
+    /* For mobile phones: */
+   div[class*="new-task"]{
+        width: 100%;
+         background: #0000FF;
+    }
+}
+</style>
+</head>
+<body>
+<div class="new-task">content goes here</div>
+
+</body>
+</html>
