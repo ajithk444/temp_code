@@ -1,0 +1,37 @@
+<html>
+
+<head>
+    <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+</head>
+
+<body>
+
+    <div id="app">
+
+        <home v-for="city in cityList" v-bind:name='city' v-bind:key='city.id'></home>
+
+    </div>
+
+    <script>
+        Vue.component('home', {
+            props: ['name'],
+            template: '<h3> {{name.text}} </h3>'
+        })
+
+        var app = new Vue({
+            el: '#app',
+            data: {
+                cityList: [
+                    { id: 1, text: 'Chennai' },
+                    { id: 2, text: 'Trivandrum' },
+                    { id: 3, text: 'Cochin' }
+                ]
+            }
+
+        });
+
+    </script>
+
+</body>
+
+</html>
